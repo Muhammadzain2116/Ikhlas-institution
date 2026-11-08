@@ -1,0 +1,204 @@
+/* ==========================================================================
+   responsive.css: breakpoints.
+   Mobile (under 900px): floating bottom dock, compact header.
+   Desktop (900px and up): horizontal header navigation, no dock.
+   ========================================================================== */
+
+/* ---- Mobile base (under 900px) ---- */
+.desktop-nav {
+  display: none;
+}
+
+.hero__media {
+  margin-bottom: 4px;
+}
+
+.site-footer__grid {
+  grid-template-columns: 1fr;
+}
+
+main {
+  /* Space so the last content is not hidden behind the dock. */
+  padding-bottom: 120px;
+}
+
+@media (max-width: 380px) {
+  .brand__name {
+    font-size: 0.95rem;
+  }
+
+  .control-btn {
+    padding: 0 10px;
+  }
+
+  .lang-btn {
+    font-size: 0.8125rem;
+  }
+}
+
+/* Two columns for sector cards on tablets and larger phones. */
+@media (min-width: 560px) {
+  .activity-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card {
+    padding: 32px;
+  }
+
+  .sector-card,
+  .activity-card {
+    padding: 18px;
+  }
+
+  .sector-dialog__scroll {
+    padding: 44px 40px 40px;
+  }
+}
+
+/* ---- Desktop (900px and up) ---- */
+@media (min-width: 900px) {
+  :root {
+    --gutter: 32px;
+    --header-h: 72px;
+  }
+
+  .desktop-nav {
+    display: block;
+  }
+
+  .dock {
+    display: none;
+  }
+
+  main {
+    padding-bottom: 0;
+  }
+
+  .back-to-top {
+    right: 28px;
+    bottom: 28px;
+  }
+
+  .site-header__inner {
+    gap: 24px;
+  }
+
+  .hero__grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: 72px;
+  }
+
+  .hero__media {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    margin: 0;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-strong);
+    box-shadow: none;
+  }
+
+  .hero__content {
+    order: -1;
+  }
+
+  .hero__media {
+    order: 0;
+  }
+
+  .about-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 72px;
+    align-items: start;
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .activity-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .site-footer__grid {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr);
+  }
+
+  .sector-dialog {
+    max-width: 720px;
+  }
+}
+
+/* ---- Small phones: bottom sheet dialog ---- */
+@media (max-width: 640px) {
+  .sector-dialog {
+    width: 100vw;
+    max-width: 100vw;
+    max-height: 90dvh;
+    margin: auto 0 0;
+    border-radius: 24px 24px 0 0;
+  }
+
+  .sector-dialog__scroll {
+    max-height: 90dvh;
+    padding: 36px 22px calc(28px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ---- Sections under 900px ---- */
+@media (max-width: 899px) {
+  .hero {
+    padding-top: calc(var(--header-h) + 24px);
+  }
+
+  .hero__content {
+    text-align: left;
+  }
+
+  .timeline {
+    padding-left: 26px;
+  }
+}
+
+/* ---- Full-width banner hero ---- */
+.hero__grid {
+  grid-template-columns: 1fr !important;
+  gap: 40px;
+}
+
+.hero__media {
+  order: -1;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  aspect-ratio: 3 / 1;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-strong);
+  box-shadow: none;
+}
+
+.hero__media img {
+  object-fit: cover;
+}
+
+.hero__content {
+  order: 0;
+}
+
+/* ---- Phones: logo alone in the top bar, dock at the bottom ---- */
+@media (max-width: 899px) {
+  .site-header .brand__name {
+    display: none;
+  }
+}
+
+/* ---- Phones: keep the header compact ---- */
+@media (max-width: 899px) {
+  .site-header__inner {
+    min-height: 68px;
+  }
+}

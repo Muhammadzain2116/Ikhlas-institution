@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sectors | Ikhlas Institution</title>
+  <meta name="theme-color" content="#070a09">
+  <script>
+    (function () {
+      var theme = 'dark';
+      try { if (localStorage.getItem('ikhlas-theme') === 'light') theme = 'light'; } catch (e) {}
+      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.style.colorScheme = theme;
+    })();
+  </script>
+  <link rel="icon" href="assets/logo/ikhlas-logo.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <link rel="stylesheet" href="css/refinement.css">
+</head>
+<body data-root="">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="index.html" aria-label="Ikhlas Institution, home">
+        <img class="brand__logo" src="assets/logo/ikhlas-logo.png" alt="Ikhlas Institution logo" width="60" height="60">
+      </a>
+      <nav class="desktop-nav" aria-label="Primary navigation"><ul class="desktop-nav__list">
+        <li><a class="nav-link" href="index.html#home"><i data-lucide="home" aria-hidden="true"></i><span>Home</span></a></li>
+        <li><a class="nav-link" href="index.html#about"><i data-lucide="book-open" aria-hidden="true"></i><span>About</span></a></li>
+        <li><a class="nav-link is-active" href="sectors.html"><i data-lucide="layers" aria-hidden="true"></i><span>Sectors</span></a></li>
+        <li><a class="nav-link" href="journey.html"><i data-lucide="history" aria-hidden="true"></i><span>Journey</span></a></li>
+        <li><a class="nav-link" href="announcements.html"><i data-lucide="megaphone" aria-hidden="true"></i><span>Announcements</span></a></li>
+        <li><a class="nav-link" href="index.html#contact"><i data-lucide="mail" aria-hidden="true"></i><span>Contact</span></a></li>
+      </ul></nav>
+      <div class="header-controls">
+        <button type="button" class="control-btn theme-btn" data-theme-toggle aria-label="Switch between dark and light theme">
+          <i data-lucide="moon-star" class="icon-dark" aria-hidden="true"></i>
+          <i data-lucide="sun" class="icon-light" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Sectors</p>
+          <h1 class="section-title">Our sectors</h1>
+          <p class="lead">Ikhlas works through its public sectors. Select a sector to read its structure and details.</p>
+        </header>
+        <div id="sector-grid" class="card-grid card-grid--single"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-bottom">
+      <p>&copy; <span id="year"></span> Ikhlas Institution. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <nav class="dock" aria-label="Mobile navigation"><ul class="dock__list">
+    <li><a class="dock__link" href="index.html#home" aria-label="Home"><i data-lucide="home" aria-hidden="true"></i></a></li>
+    <li><a class="dock__link" href="index.html#about" aria-label="About"><i data-lucide="book-open" aria-hidden="true"></i></a></li>
+    <li><a class="dock__link is-active" href="sectors.html" aria-label="Sectors"><i data-lucide="layers" aria-hidden="true"></i></a></li>
+    <li><a class="dock__link" href="journey.html" aria-label="Journey"><i data-lucide="history" aria-hidden="true"></i></a></li>
+    <li><a class="dock__link" href="announcements.html" aria-label="Announcements"><i data-lucide="megaphone" aria-hidden="true"></i></a></li>
+    <li><a class="dock__link" href="index.html#contact" aria-label="Contact"><i data-lucide="mail" aria-hidden="true"></i></a></li>
+  </ul></nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.383.0/dist/umd/lucide.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/text.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/features.js"></script>
+  <script>
+    (function () {
+      var D = window.Ikhlas.data;
+      var T = window.Ikhlas.text;
+      document.getElementById('sector-grid').innerHTML = D.sectors.map(function (s) {
+        var badge = s.status === 'review' ? '<span class="tag tag--gold">Under review</span>' : '';
+        var media = s.image
+          ? '<figure class="media media--16x9"><img src="' + T.esc(s.image) + '" alt="' + T.esc(s.name) + '"></figure>'
+          : '<figure class="media media--16x9 is-missing"><span class="media__label">Image to be added</span></figure>';
+        return '<article class="card sector-card">' + media +
+          '<div class="sector-card__body">' +
+          '<div class="sector-card__top"><span class="icon-chip"><i data-lucide="' + T.esc(s.icon) + '" aria-hidden="true"></i></span>' + badge + '</div>' +
+          '<h3 class="card-title">' + T.esc(s.name) + '</h3>' +
+          '<p class="card-text">' + T.fmt(s.intro) + '</p>' +
+          '<a class="btn btn--ghost" href="sectors/' + T.esc(s.id) + '.html"><span>View sector</span></a>' +
+          '</div></article>';
+      }).join('');
+      window.Ikhlas.theme.init();
+      if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+      var y = document.getElementById('year');
+      if (y) y.textContent = String(new Date().getFullYear());
+    })();
+  </script>
+</body>
+</html>

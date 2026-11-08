@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Sector | Ikhlas Institution</title>
+  <meta name="theme-color" content="#070a09">
+  <script>(function(){var t='dark';try{if(localStorage.getItem('ikhlas-theme')==='light')t='light';}catch(e){}document.documentElement.setAttribute('data-theme',t);document.documentElement.style.colorScheme=t;})();</script>
+  <link rel="icon" href="../assets/logo/ikhlas-logo.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/themes.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/refinement.css">
+</head>
+<body data-root="../" data-sector="dawah">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="brand" href="../index.html" aria-label="Ikhlas Institution, home">
+        <img class="brand__logo" data-asset="logo" src="../assets/logo/ikhlas-logo.png" alt="Ikhlas Institution logo" width="60" height="60">
+      </a>
+      <nav class="desktop-nav" aria-label="Primary navigation"><ul class="desktop-nav__list"><li><a class="nav-link" href="../index.html#home" data-nav="home"><i data-lucide="home" aria-hidden="true"></i><span>Home</span></a></li><li><a class="nav-link" href="../index.html#about" data-nav="about"><i data-lucide="book-open" aria-hidden="true"></i><span>About</span></a></li><li><a class="nav-link" href="../index.html#sectors" data-nav="sectors"><i data-lucide="layers" aria-hidden="true"></i><span>Sectors</span></a></li><li><a class="nav-link" href="../index.html#journey" data-nav="journey"><i data-lucide="history" aria-hidden="true"></i><span>Journey</span></a></li><li><a class="nav-link" href="../index.html#announcements" data-nav="announcements"><i data-lucide="megaphone" aria-hidden="true"></i><span>Announcements</span></a></li><li><a class="nav-link" href="../index.html#contact" data-nav="contact"><i data-lucide="mail" aria-hidden="true"></i><span>Contact</span></a></li></ul></nav>
+      <div class="header-controls">
+        <div class="visits" title="Total visits">
+          <i data-lucide="eye" aria-hidden="true"></i>
+          <span class="visits__label">Total Visits</span>
+          <span class="visits__count" id="visits-count" aria-live="polite">—</span>
+        </div>
+        <button type="button" class="control-btn theme-btn" data-theme-toggle aria-label="Switch between dark and light theme">
+          <i data-lucide="moon-star" class="icon-dark" aria-hidden="true"></i>
+          <i data-lucide="sun" class="icon-light" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <section class="section">
+      <div class="container">
+        <div id="sector-root" class="sector-page"></div>
+        <div class="sector-page">
+          <h2 class="subsection-title">Other sectors</h2>
+          <div id="other-sectors" class="card-grid card-grid--single"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div>
+        <a class="brand" href="../index.html" aria-label="Ikhlas Institution, home">
+          <img class="brand__logo" data-asset="logo" src="../assets/logo/ikhlas-logo.png" alt="Ikhlas Institution logo" width="48" height="48">
+        </a>
+        <p class="footer-text">A Muslim Students Institution committed to nurturing faith, knowledge, brotherhood and service.</p>
+        <p class="footer-est">Established 2014 E.C.</p>
+      </div>
+      <nav aria-labelledby="footer-nav-title">
+        <h2 id="footer-nav-title" class="footer-title">Explore</h2>
+        <ul class="footer-list"><li><a href="../index.html#home">Home</a></li><li><a href="../index.html#about">About</a></li><li><a href="../index.html#sectors">Sectors</a></li><li><a href="../index.html#journey">Journey</a></li><li><a href="../index.html#announcements">Announcements</a></li><li><a href="../index.html#contact">Contact</a></li></ul>
+      </nav>
+      <div data-footer-channels>
+        <h2 class="footer-title">Official channels</h2>
+        <ul class="footer-list">
+          <li><a data-link="telegram">Telegram</a></li>
+          <li><a data-link="instagram">Instagram</a></li>
+          <li><a data-link="email">Email</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; <span id="year"></span> Ikhlas Institution. All rights reserved.</p>
+    </div>
+  </footer>
+  <nav class="dock" aria-label="Mobile navigation"><ul class="dock__list"><li><a class="dock__link" href="../index.html#home" data-nav="home" aria-label="Home"><i data-lucide="home" aria-hidden="true"></i></a></li><li><a class="dock__link" href="../index.html#about" data-nav="about" aria-label="About"><i data-lucide="book-open" aria-hidden="true"></i></a></li><li><a class="dock__link" href="../index.html#sectors" data-nav="sectors" aria-label="Sectors"><i data-lucide="layers" aria-hidden="true"></i></a></li><li><a class="dock__link" href="../index.html#journey" data-nav="journey" aria-label="Journey"><i data-lucide="history" aria-hidden="true"></i></a></li><li><a class="dock__link" href="../index.html#announcements" data-nav="announcements" aria-label="Announcements"><i data-lucide="megaphone" aria-hidden="true"></i></a></li><li><a class="dock__link" href="../index.html#contact" data-nav="contact" aria-label="Contact"><i data-lucide="mail" aria-hidden="true"></i></a></li></ul></nav>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.383.0/dist/umd/lucide.min.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/text.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/sector-page.js"></script>
+  <script src="../js/features.js"></script>
+</body>
+</html>

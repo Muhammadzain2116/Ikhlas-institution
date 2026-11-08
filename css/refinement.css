@@ -1,0 +1,947 @@
+/* ==========================================================================
+   refinement.css: final refinements. Loaded last, so it overrides earlier rules.
+   Fonts: Inter (English, Google Fonts), Ethiopic from font.et (local file),
+   Amiri (Arabic, Google Fonts).
+   ========================================================================== */
+
+:root {
+  --font-en: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-am: "Ethiopic Font", "Noto Sans Ethiopic", system-ui, sans-serif;
+  --font-ar: "Amiri", "Noto Naskh Arabic", "Times New Roman", serif;
+  --font-body: var(--font-en);
+}
+
+/* font.et Amharic font: place the file at assets/fonts/font-et-amharic.woff2 (or .ttf).
+   Until it is added, Noto Sans Ethiopic from Google Fonts is used. */
+/* Amharic: font.et file if present, otherwise Agbalumo */
+@font-face {
+  font-family: "Ethiopic Font";
+  src: url("../assets/fonts/font-et-amharic.woff2") format("woff2"),
+       url("../assets/fonts/font-et-amharic.ttf") format("truetype");
+  font-display: swap;
+}
+
+body {
+  font-family: var(--font-en);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-en);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.am {
+  font-family: var(--font-am);
+  line-height: 2;
+  letter-spacing: 0;
+}
+
+h1 .am, h2 .am, h3 .am {
+  line-height: 1.5;
+}
+
+.ar {
+  font-family: var(--font-ar);
+  display: inline-block;
+  direction: rtl;
+  unicode-bidi: isolate;
+  line-height: 1.6;
+}
+
+/* ---- Header: logo alone, no forced crop ---- */
+.site-header__inner {
+  min-height: 76px;
+  gap: 16px;
+}
+
+.brand__logo {
+  width: auto;
+  height: clamp(44px, 6vw, 60px);
+  max-width: 190px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  object-fit: contain;
+  transform-origin: left center;
+  transition: transform 0.35s var(--ease);
+}
+
+.brand:hover .brand__logo,
+.brand:focus-visible .brand__logo {
+  transform: scale(1.06);
+  border: 0;
+  box-shadow: none;
+  background: none;
+}
+
+/* ---- Total visits counter (top right) ---- */
+.header-controls {
+  gap: 10px;
+}
+
+.visits {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.visits .lucide {
+  width: 16px;
+  height: 16px;
+  color: var(--emerald-bright);
+}
+
+.visits__count {
+  color: var(--text);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  min-width: 2ch;
+}
+
+@media (max-width: 419px) {
+  .visits__label { display: none; }
+  .visits { padding: 0 10px; }
+}
+
+/* ---- Desktop navigation: one rounded floating capsule, centred ---- */
+@media (min-width: 900px) {
+  .desktop-nav {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+  }
+
+  .desktop-nav__list {
+    padding: 5px;
+    gap: 2px;
+    border: 1px solid var(--dock-border);
+    border-radius: 999px;
+    background: var(--dock-bg);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+  }
+
+  .nav-link {
+    padding: 8px 14px;
+    transition: background-color 0.3s var(--ease), color 0.3s var(--ease);
+  }
+
+  .nav-link.is-active {
+    background: var(--active-bg);
+    color: var(--emerald-bright);
+  }
+}
+
+/* ---- Centred content columns ---- */
+.card-grid {
+  display: grid;
+  gap: 22px;
+  width: 100%;
+  max-width: 1040px;
+  margin-inline: auto;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 760px) {
+  .card-grid:not(.card-grid--single) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.card-grid--single {
+  max-width: 860px;
+}
+
+.contact-grid {
+  width: 100%;
+  max-width: 860px;
+  margin-inline: auto;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.values-grid {
+  max-width: 1040px;
+  margin-inline: auto;
+}
+
+.approach {
+  max-width: 1040px;
+  margin-inline: auto;
+}
+
+/* ---- 16:9 image frame used by every sector, post and announcement ---- */
+.media--16x9 {
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+}
+
+.media img {
+  object-fit: cover;
+}
+
+.card {
+  border-radius: 24px;
+}
+
+.sector-card,
+.post-card {
+  display: flex;
+  flex-direction: column;
+  padding: 14px;
+}
+
+.sector-card__body,
+.post-card__body {
+  display: grid;
+  gap: 12px;
+  padding: 16px 8px 8px;
+  align-content: start;
+  flex: 1;
+}
+
+.sector-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.post-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.tag--gold {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* ---- Editorial preface (Basmala + Amharic introduction) ---- */
+.preface {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: clamp(30px, 5vw, 56px) clamp(22px, 5vw, 58px);
+  border-radius: 30px;
+  border: 1px solid var(--gold);
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(32, 164, 119, 0.22), transparent 60%),
+    var(--emerald-deep);
+  color: #e8f5ef;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.preface__basmala {
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 2.9rem);
+  color: #e9c86e;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.preface__ornament {
+  position: relative;
+  display: block;
+  height: 12px;
+  max-width: 320px;
+  margin: 22px auto 26px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent) center / 100% 1px no-repeat;
+}
+
+.preface__ornament::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  transform: rotate(45deg);
+  background: var(--emerald-deep);
+  border: 1px solid var(--gold);
+}
+
+.preface__text {
+  text-align: start;
+  font-size: clamp(1.02rem, 0.98rem + 0.3vw, 1.2rem);
+  line-height: 2.1;
+  color: #ddefe6;
+}
+
+/* ---- Buttons used as form actions ---- */
+button.btn {
+  font: inherit;
+  border: 0;
+  cursor: pointer;
+}
+
+/* ---- Sector pages ---- */
+.sector-page {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  font-weight: 600;
+}
+
+.back-link .lucide {
+  width: 18px;
+  height: 18px;
+}
+
+.sector-hero {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.sector-hero__media {
+  margin: 6px 0 36px;
+}
+
+.doc-section {
+  padding: 30px 0;
+  border-top: 1px solid var(--border);
+}
+
+.doc-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.doc-num {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--emerald-bright);
+}
+
+.doc-head h2 {
+  font-size: clamp(1.35rem, 1.1rem + 1vw, 1.9rem);
+}
+
+.sub-head {
+  font-size: 1rem;
+  font-weight: 650;
+  margin: 22px 0 10px;
+  color: var(--text);
+}
+
+.sub-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.sub-item:last-child {
+  border-bottom: 0;
+}
+
+.sub-item__name {
+  font-size: 1.1rem;
+  margin-bottom: 6px;
+}
+
+.doc-section p {
+  color: var(--text-muted);
+}
+
+.doc-section p + p {
+  margin-top: 10px;
+}
+
+.review-card {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+  text-align: center;
+  padding: clamp(40px, 8vw, 72px) 26px;
+  border-radius: 28px;
+  border: 1px solid var(--border-strong);
+  background: var(--card);
+}
+
+.review-card h2 {
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.2rem);
+}
+
+.review-card p {
+  max-width: 520px;
+  color: var(--text-muted);
+}
+
+.review-badge {
+  display: inline-flex;
+  padding: 9px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+}
+
+/* ---- Article (journey posts and announcements) ---- */
+.article {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.article__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin: 22px 0 12px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.article__body {
+  display: grid;
+  gap: 16px;
+  margin-top: 26px;
+  color: var(--text-muted);
+}
+
+/* ---- Share Your Ideas ---- */
+.ideas {
+  max-width: 640px;
+  margin: 64px auto 0;
+  padding: 32px;
+  border-radius: 26px;
+  border: 1px solid var(--border-strong);
+  background: var(--card);
+}
+
+.ideas h3 {
+  font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.9rem);
+  margin-bottom: 8px;
+}
+
+.ideas > p {
+  color: var(--text-muted);
+  margin-bottom: 22px;
+}
+
+.idea-form {
+  display: grid;
+  gap: 18px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field label {
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.optional {
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: 14px;
+}
+
+.field textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: 2px solid var(--emerald-bright);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.field__hint {
+  justify-self: end;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.idea-form__submit {
+  justify-self: start;
+}
+
+.form-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.form-status {
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--border-strong);
+  font-size: 0.95rem;
+}
+
+.form-status:empty {
+  display: none;
+}
+
+.form-status.is-success {
+  border-color: var(--emerald-bright);
+  background: var(--active-bg);
+}
+
+.form-status.is-error {
+  border-color: #d9534f;
+  color: #d9534f;
+}
+
+/* ---- Bottom dock: a little larger, rounded capsule ---- */
+.dock {
+  padding: 8px;
+}
+
+.dock__link {
+  width: 52px;
+  height: 52px;
+}
+
+
+/* Agbalumo: English headings */
+@font-face {
+  font-family: "Agbalumo";
+  src: url("../assets/fonts/Agbalumo_Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.hero__title,
+.hero__text,
+.desktop-nav,
+.visits__label,
+.section-title,
+.review-card h2,
+.sector-hero h1,
+.preface__text,
+.card-grid ,
+.subsection-title,
+.article h1 {
+  font-family: "Agbalumo", "Inter", system-ui, sans-serif;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+/* Header: no background bar, so the nav capsule stands on its own */
+.site-header,
+.site-header.is-scrolled {
+  background: transparent !important;
+  border-bottom-color: transparent !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* One outline per sector card: remove the inner frame around the photo */
+.sector-card .media,
+.post-card .media {
+  border: 0;
+  background: transparent;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+/* Show the whole photo inside the 16:9 frame, with no cropping */
+.sector-card .media img,
+.post-card .media img {
+  object-fit: contain;
+  background: transparent;
+  padding: 0;
+}
+
+/* Remove the extra padding inside the card so the photo sits at the top */
+.sector-card {
+  padding: 12px;
+}
+
+/* Wider sector column */
+.card-grid--single {
+  max-width: 1000px;
+}
+
+
+/* Header logo: round, bold outline, easy to see */
+.brand__logo {
+  width: 60px;
+  height: 60px;
+  max-width: none;
+  padding: 6px;
+  border-radius: 50%;
+  border: 3px solid var(--emerald-bright);
+  background: var(--card);
+  box-shadow: 0 3px 10px rgba(48, 203, 4, 0.936);
+  object-fit: contain;
+}
+/* Header logo: solid white inside the green ring, also on hover */
+.brand__logo,
+.brand:hover .brand__logo,
+.brand:focus-visible .brand__logo {
+  background: #ffffff;
+  border: 2px solid var(--emerald-bright);
+  border-radius: 50%;
+  overflow: hidden;
+}
+/* ---- Sectors: 2 + 2 + 1 layout (single column on phones) ---- */
+#sector-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  justify-items: center;
+  max-width: 980px;
+  margin-inline: auto;
+}
+
+#sector-grid > .sector-card {
+  width: 100%;
+  max-width: 420px;
+}
+
+#sector-grid > .sector-card:last-child {
+  grid-column: 1 / -1;
+  max-width: 480px;
+  justify-self: center;
+}
+
+@media (max-width: 639px) {
+  #sector-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #sector-grid > .sector-card:last-child {
+    grid-column: auto;
+  }
+}
+
+/* ---- Social channels: Telegram, Instagram, Email in one row ---- */
+div.contact-grid:nth-of-type(1) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+div.contact-grid:nth-of-type(1) > .link-card {
+  flex: 1 1 180px;
+  max-width: 220px;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 22px 16px;
+  gap: 12px;
+}
+
+div.contact-grid:nth-of-type(1) .link-card__arrow {
+  display: none;
+}
+
+/* ---- Support contacts: two boxes side by side ---- */
+div.contact-grid:nth-of-type(2) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  max-width: 760px;
+  margin-inline: auto;
+}
+
+div.contact-grid:nth-of-type(2) > .link-card {
+  flex: 1 1 260px;
+  max-width: 340px;
+}
+/* ---- Language button in place of Total Visits ---- */
+.lang-switch {
+  height: 38px;
+  padding: 0 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+
+/* ---- Hero, Basmala and sectors drop in as you scroll, one by one ---- */
+.js .hero__media.reveal,
+.js .preface.reveal,
+.js .sector-card.reveal {
+  opacity: 0;
+  transform: translateY(-70px);
+}
+
+.js .hero__media.reveal.is-visible,
+.js .preface.reveal.is-visible,
+.js .sector-card.reveal.is-visible {
+  animation: ikhlas-drop 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
+  animation-delay: var(--drop-delay, 0s);
+}
+
+.js .sector-card.reveal:nth-child(1) { --drop-delay: 0s; }
+.js .sector-card.reveal:nth-child(2) { --drop-delay: 0.18s; }
+.js .sector-card.reveal:nth-child(3) { --drop-delay: 0.36s; }
+.js .sector-card.reveal:nth-child(4) { --drop-delay: 0.54s; }
+.js .sector-card.reveal:nth-child(5) { --drop-delay: 0.72s; }
+
+@keyframes ikhlas-drop {
+  0%   { opacity: 0; transform: translateY(-70px); }
+  60%  { opacity: 1; transform: translateY(10px); }
+  80%  { transform: translateY(-4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js .hero__media.reveal,
+  .js .preface.reveal,
+  .js .sector-card.reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .js .sector-card.reveal.is-visible,
+  .js .hero__media.reveal.is-visible,
+  .js .preface.reveal.is-visible {
+    animation: none;
+  }
+}
+/* Keep the hero, Basmala and sector cards visible after they drop in */
+.js .hero__media.reveal.is-visible,
+.js .preface.reveal.is-visible,
+.js .sector-card.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Responsive photos: each image keeps its own shape, never stretched or cut */
+.media {
+  aspect-ratio: auto !important;
+  height: auto !important;
+  width: 100%;
+  border: 0;
+  background: var(--bg-2);
+}
+
+.media img {
+  position: static !important;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: contain;
+  margin: 0 auto;
+  border-radius: 18px;
+}
+
+/* Missing image: keep a 16:9 placeholder box so the card layout stays even */
+.media.is-missing {
+  aspect-ratio: 16 / 9 !important;
+}
+
+.media.is-missing img {
+  display: none;
+}
+
+/* Phones: tall photos are limited a bit more */
+@media (max-width: 639px) {
+  .media img {
+    max-height: 380px;
+  }
+}
+/* Sector photos: fill the card width and sit in the centre */
+#sector-grid .sector-card .media {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#sector-grid .sector-card .media img {
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+/* Videos keep their own shape: portrait videos stand tall, landscape fill the width */
+figure.media.media--video {
+  aspect-ratio: auto !important;
+  height: auto !important;
+  width: 100%;
+  background: #000;
+  display: flex;
+  justify-content: center;
+}
+
+figure.media.media--video video {
+  position: static !important;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 520px;
+  margin: 0 auto;
+  border-radius: 18px;
+  object-fit: contain;
+}
+
+@media (max-width: 639px) {
+  figure.media.media--video video {
+    max-height: 420px;
+  }
+}
+/* Video frame shrinks to fit the video: no black margins */
+.post-card figure.media.media--video {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  background: transparent;
+  display: block;
+  aspect-ratio: auto !important;
+}
+
+.post-card figure.media.media--video video {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 520px;
+  margin: 0 auto;
+  border-radius: 18px;
+}
+/* Hide the Read more link on journey and announcement cards */
+.post-card .link-arrow {
+  display: none;
+}
+/* Announcements only: posters centred in the two columns */
+#announcement-grid {
+  justify-items: center;
+  align-items: start;
+}
+
+#announcement-grid > .post-card {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+#announcement-grid .post-card .media {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: transparent;
+}
+
+#announcement-grid .post-card .media img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 560px;
+  margin: 0 auto;
+  display: block;
+  object-fit: contain;
+}
+/* Announcements only: equal-height cards, each poster fully visible and centred */
+#announcement-grid {
+  align-items: stretch;
+  justify-items: center;
+}
+
+#announcement-grid > .post-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+#announcement-grid .post-card .media {
+  height: 560px;
+  aspect-ratio: auto !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+}
+
+#announcement-grid .post-card .media img {
+  position: static !important;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+}
+
+#announcement-grid .post-card__body {
+  flex: 1;
+}
+
+@media (max-width: 639px) {
+  #announcement-grid .post-card .media {
+    height: 440px;
+  }
+}
+/* Announcements: the card border wraps the poster and text */
+#announcement-grid > .post-card {
+  height: auto !important;
+  padding: 14px !important;
+  overflow: hidden;
+}
+
+#announcement-grid .post-card .media {
+  height: auto !important;
+  min-height: 0 !important;
+  margin: 0 auto;
+}
+
+#announcement-grid .post-card .media img {
+  display: block;
+  margin: 0 auto;
+}
+/* Sections stop just below the header when you click a menu link */
+section[id] {
+  scroll-margin-top: 90px;
+}
+
+/* Stop the browser shifting the page while images load */
+html {
+  overflow-anchor: none;
+}
